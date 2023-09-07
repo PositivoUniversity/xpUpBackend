@@ -7,11 +7,15 @@ namespace xpUpBackend.Models
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
+        public Users Enrolleds { get; set; }
 
-        public Courses(int id, string name)
+        public Courses() { }
+
+        public Courses(int id, string name, Users enrolleds)
         {
             Id = id;
             Name = name;
+            Enrolleds = enrolleds;
         }
     }
 }

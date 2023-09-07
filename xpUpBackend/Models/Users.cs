@@ -12,6 +12,8 @@ namespace xpUpBackend.Models
         [Required]
         public Courses Course { get; set; }
 
+        public Users() { }
+
         public Users(int id, string name, string email, UsersRoles userRole, Courses course)
         {
             Id = id;
