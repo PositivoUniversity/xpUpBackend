@@ -3,6 +3,7 @@
     public enum UsersRoles : int
     {
         Admin = 1,
-        User = 2
+        Teacher = 2,
+        User = 3
     }
 }
