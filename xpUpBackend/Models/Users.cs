@@ -10,6 +10,7 @@ namespace xpUpBackend.Models
         [Required]
         public string Name { get; set; }
         [Required]
+        [EmailAddress(ErrorMessage = "Informe um email válido.")]
         public string Email { get; set; }
         [Required]
         [NotMapped]
