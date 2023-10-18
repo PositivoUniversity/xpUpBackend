@@ -16,8 +16,12 @@ namespace xpUpBackend.Models
         public DateTime UpdatedAt { get; set; }
         [ForeignKey("Users")]
         public Users PublishedBy { get; set; }
+        public List<Likes> Likes { get; private set; }
 
-        public News() { }
+        public News() 
+        {
+            Likes = new List<Likes>();
+        }
 
         public News(string title, string subtitle, string description, Users publishedBy)
         {
@@ -25,8 +29,9 @@ namespace xpUpBackend.Models
             Subtitle = subtitle;
             Description = description;
             PublishedBy = publishedBy;
+            Likes = new List<Likes>();
             CreatedAt = DateTime.Now;
-            UpdatedAt = DateTime.Now;
+            UpdatedAt = DateTime.Now; 
         }
     }
 }
