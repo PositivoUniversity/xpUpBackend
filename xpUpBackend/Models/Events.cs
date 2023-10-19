@@ -17,8 +17,9 @@ namespace xpUpBackend.Models
         [ForeignKey("Users")]
         public Users PublishedBy { get; set; }
 
-        public Events() { }
-        
+        public Events()
+        {}
+
         public Events(string title, string subtitle, string description, Users publishedBy)
         {
             Title = title;
