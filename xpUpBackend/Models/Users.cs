@@ -27,7 +27,6 @@ namespace xpUpBackend.Models
         public List<Events> Envents { get; set; }
         public List<News> News { get; set; }
         public Users() { }
-        public Users() { }
 
         public Users(string name, string email, string password, string passwordTip, UsersRoles userRole, Courses course)
         {
