@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.Extensions.Hosting;
+using Org.BouncyCastle.Utilities;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace xpUpBackend.Models
@@ -16,7 +18,8 @@ namespace xpUpBackend.Models
         public DateTime UpdatedAt { get; set; }
         [ForeignKey("Users")]
         public Users PublishedBy { get; set; }
-
+        public ICollection<CheckIn> CheckIns { get; set; } = new List<CheckIn>(); 
+        public ICollection<Likes> Likes { get; set; } = new List<Likes>();
         public Events() { }
         
         public Events(string title, string subtitle, string description, Users publishedBy)
