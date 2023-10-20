@@ -14,6 +14,7 @@ namespace xpUpBackend.Models
         public Users LikedBy { get; set; }
         [ForeignKey("News")]
         public News Notice { get; set; }
+        [ForeignKey("Events")]
         public Events Event { get; set; }
 
         public Likes() { }
