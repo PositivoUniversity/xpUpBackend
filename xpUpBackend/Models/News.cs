@@ -15,11 +15,13 @@ namespace xpUpBackend.Models
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
         [ForeignKey("Users")]
-        public Users PublishedBy { get; set; }
+        public int  PublishedBy { get; set; }
+
+        public Users user { get; set; }
 
         public News() { }
 
-        public News(string title, string subtitle, string description, Users publishedBy)
+        public News(string title, string subtitle, string description, int publishedBy)
         {
             Title = title;
             Subtitle = subtitle;
