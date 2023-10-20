@@ -4,6 +4,7 @@ gitignore*.suo
 
 .vs/
 
+
 # Build results
 [Dd]ebug/
 [Rr]elease/
