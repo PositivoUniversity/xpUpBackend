@@ -24,7 +24,9 @@ namespace xpUpBackend.Models
         public UsersRoles UserRole { get; set; }
         [ForeignKey("Courses")]
         public Courses Course { get; set; }
-
+        public List<Events> Envents { get; set; }
+        public List<News> News { get; set; }
+        public Users() { }
         public Users() { }
 
         public Users(string name, string email, string password, string passwordTip, UsersRoles userRole, Courses course)
