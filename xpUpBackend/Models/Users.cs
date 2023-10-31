@@ -18,6 +18,8 @@ namespace xpUpBackend.Models
         [Required]
         [NotMapped]
         public string PasswordTip { get; set; }
+        public string PasswordHash { get; set; }
+        public string PasswordTipHash { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
         public int Role { get; set; }

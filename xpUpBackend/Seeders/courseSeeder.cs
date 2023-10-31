@@ -19,18 +19,18 @@ namespace xpUpBackend.seeder
             if (!context.Courses.Any())
             {
                 var courseNamesToCreate = new string[]
-          {
-    "Administração",
-    "Análise e Desenvolvimento de Sistemas",
-    "Biomedicina",
-    "Ciências Contábeis",
-    "Direito",
-    "Educação Física",
-    "Enfermagem",
-    "Fisioterapia",
-    "Matemática",
-    "Psicologia"
-          };
+                {
+                    "Administração",
+                    "Análise e Desenvolvimento de Sistemas",
+                    "Biomedicina",
+                    "Ciências Contábeis",
+                    "Direito",
+                    "Educação Física",
+                    "Enfermagem",
+                    "Fisioterapia",
+                    "Matemática",
+                    "Psicologia"
+                };
 
 
                 foreach (var courseName in courseNamesToCreate)

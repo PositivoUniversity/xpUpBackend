@@ -103,6 +103,8 @@ namespace xpUpBackend.Controllers
                     Email = dto.Email,
                     Password = dto.Password,
                     PasswordTip = dto.PasswordTip,
+                    PasswordHash = dto.GetMd5Hash(),
+                    PasswordTipHash = dto.GetMd5Hash(),
                     CreatedAt = DateTime.Now,
                     UpdatedAt = DateTime.Now,
                     Role = dto.Role,
