@@ -17,18 +17,5 @@ namespace xpUpBackend.Models
         [ForeignKey("Users")]
         public Users PublishedBy { get; set; }
         public List<Likes> Likes { get;} = new List<Likes>();
-
-        public News() { }
-
-        public News(string title, string subtitle, string description, Users publishedBy, List<Likes> likes)
-        {
-            Title = title;
-            Subtitle = subtitle;
-            Description = description;
-            PublishedBy = publishedBy;
-            CreatedAt = DateTime.Now;
-            UpdatedAt = DateTime.Now;
-            Likes = likes;
-        }
     }
 }

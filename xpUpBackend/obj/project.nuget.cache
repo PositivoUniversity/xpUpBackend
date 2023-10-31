@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "xP1DB4CIAAF6netqdtLj9Ps+UJEGnYJpiM6wOcG8Ix1+dwX+m74W3khXw3SfyfvRbU1/qGBUuI0wYs33wWdvkQ==",
+  "dgSpecHash": "IvqjkgSItPcmYJMqYY8O8AphzApFlcnqj8U5CsORLcTRCA6IKqyMbwPhqba1CTNeOIxqXDxiCKoD7samGYK66A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\2569792\\Documents\\Projeto Integrado Facul\\xpUpBackend\\xpUpBackend\\xpUpBackend.csproj",
+  "projectFilePath": "C:\\Users\\2569792\\OneDrive - TCS COM PROD\\Documents\\Projeto Integrado Facul\\xpUpBackend\\xpUpBackend\\xpUpBackend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\2569792\\.nuget\\packages\\google.protobuf\\3.21.9\\google.protobuf.3.21.9.nupkg.sha512",
     "C:\\Users\\2569792\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",

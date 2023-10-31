@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using xpUpBackend.ContextDb;
+using xpUpBackend.Dto;
 using xpUpBackend.Models;
 
 namespace xpUpBackend.Controllers
@@ -79,6 +80,39 @@ namespace xpUpBackend.Controllers
             }
 
             return NoContent();
+        }
+
+        [HttpPost("create")]
+        public async Task<ActionResult<Users>> PostCreateUsers(CreateUsersDto dto)
+        {
+            if (_context.Users == null)
+            {
+                return Problem("Entity set 'XpUpContext.Users'  is null.");
+            }
+
+            Courses course = await _context.Courses.FindAsync(dto.Course);
+            if (course == null)
+            {
+                return NotFound("Curso não encontrado!");
+            }
+            else
+            {
+                var users = new Users
+                {
+                    Name = dto.Name,
+                    Email = dto.Email,
+                    Password = dto.Password,
+                    PasswordTip = dto.PasswordTip,
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = DateTime.Now,
+                    Role = dto.Role,
+                    Course = course
+                };
+
+                _context.Users.Add(users);
+                await _context.SaveChangesAsync();
+                return CreatedAtAction("GetUsers", new { id = users.Id }, users);
+            }
         }
 
         // POST: api/Users

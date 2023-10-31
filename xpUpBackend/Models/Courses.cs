@@ -11,17 +11,7 @@ namespace xpUpBackend.Models
         public string Name { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
-        [ForeignKey("Users")]
-        public Users Enrolleds { get; set; }
-
-        public Courses() { }
-
-        public Courses(string name, Users enrolleds)
-        {
-            Name = name;
-            Enrolleds = enrolleds;
-            CreatedAt = DateTime.Now;
-            UpdatedAt = DateTime.Now;
-        }
+        [NotMapped]
+        public List<Users>? Enrolleds { get; set; }
     }
 }

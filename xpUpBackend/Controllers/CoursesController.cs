@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Humanizer;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using xpUpBackend.ContextDb;
+using xpUpBackend.Dto;
 using xpUpBackend.Models;
 
 namespace xpUpBackend.Controllers
@@ -79,6 +81,26 @@ namespace xpUpBackend.Controllers
             }
 
             return NoContent();
+        }
+
+        [HttpPost("new")]
+        public async Task<ActionResult<Courses>> PostNewCourses(CreateCoursesDto dto)
+        {
+            if (_context.Courses == null)
+            {
+                return Problem("Entity set 'XpUpContext.Courses'  is null.");
+            }
+
+            var courses = new Courses
+            {
+                Name = dto.Name,
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now
+            };
+
+            _context.Courses.Add(courses);
+            await _context.SaveChangesAsync();
+            return CreatedAtAction("GetCourses", new { id = courses.Id }, courses);
         }
 
         // POST: api/Courses
