@@ -10,7 +10,7 @@ namespace xpUpBackend.ContextDb
         public DbSet<News>? News { get; set; }
         public DbSet<Likes>? Likes { get; set; }
         public DbSet<Events>? Events { get; set; }
-        public DbSet<Courses>? Courses { get; set; }
+        public DbSet<Courses> Courses { get; set; }
         public DbSet<CheckIn>? CheckIn { get; set; }
     }
 }
