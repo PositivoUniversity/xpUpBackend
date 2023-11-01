@@ -91,7 +91,6 @@ namespace xpUpBackend.Controllers
                 byte[] bytes = Encoding.UTF8.GetBytes(input);
                 byte[] hashBytes = sha256.ComputeHash(bytes);
 
-                // Converter o hash em uma representação hexadecimal
                 StringBuilder builder = new StringBuilder();
                 for (int i = 0; i < hashBytes.Length; i++)
                 {
