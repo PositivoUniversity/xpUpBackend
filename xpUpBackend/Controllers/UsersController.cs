@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -82,12 +84,30 @@ namespace xpUpBackend.Controllers
             return NoContent();
         }
 
+        private string ComputeHash(string input)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] bytes = Encoding.UTF8.GetBytes(input);
+                byte[] hashBytes = sha256.ComputeHash(bytes);
+
+                // Converter o hash em uma representação hexadecimal
+                StringBuilder builder = new StringBuilder();
+                for (int i = 0; i < hashBytes.Length; i++)
+                {
+                    builder.Append(hashBytes[i].ToString("x2"));
+                }
+
+                return builder.ToString();
+            }
+        }
+
         [HttpPost("create")]
         public async Task<ActionResult<Users>> PostCreateUsers(CreateUsersDto dto)
         {
             if (_context.Users == null)
             {
-                return Problem("Entity set 'XpUpContext.Users'  is null.");
+                return Problem("Entity set 'XpUpContext.Users' is null.");
             }
 
             Courses course = await _context.Courses.FindAsync(dto.Course);
@@ -103,13 +123,14 @@ namespace xpUpBackend.Controllers
                     Email = dto.Email,
                     Password = dto.Password,
                     PasswordTip = dto.PasswordTip,
-                    PasswordHash = dto.GetMd5Hash(),
-                    PasswordTipHash = dto.GetMd5Hash(),
                     CreatedAt = DateTime.Now,
                     UpdatedAt = DateTime.Now,
                     Role = dto.Role,
                     Course = course
                 };
+
+                users.PasswordHash = ComputeHash(dto.Password);
+                users.PasswordTipHash = ComputeHash(dto.PasswordTip);
 
                 _context.Users.Add(users);
                 await _context.SaveChangesAsync();
