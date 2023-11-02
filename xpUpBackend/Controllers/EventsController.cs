@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using xpUpBackend.ContextDb;
+using xpUpBackend.Dto;
 using xpUpBackend.Models;
 
 namespace xpUpBackend.Controllers
@@ -96,8 +97,38 @@ namespace xpUpBackend.Controllers
             return CreatedAtAction("GetEvents", new { id = events.Id }, events);
         }
 
-        // DELETE: api/Events/5
-        [HttpDelete("{id}")]
+        // DTO Post para Events
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPost("EventsTest")]
+        public async Task<ActionResult> PostCreateEvents(CreateEventsDto dto)
+        {
+            if (dto == null)
+            {
+                return BadRequest("O DTO de criação de eventos é inválido.");
+            }
+
+            // Mapeie o DTO para um objeto Events (se necessário)
+            var eventToAdd = new Events
+            {
+                Title = dto.Title,
+                Subtitle = dto.Subtitle,
+                Description = dto.Description,
+                UsersId = dto.UsersId,
+
+                Users = await _context.Users.FindAsync(dto.UsersId),
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now
+            };
+
+            _context.Events.Add(eventToAdd);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetEvents", new { id = eventToAdd.Id }, eventToAdd);
+        }
+
+
+// DELETE: api/Events/5
+[HttpDelete("{id}")]
         public async Task<IActionResult> DeleteEvents(int id)
         {
             if (_context.Events == null)
