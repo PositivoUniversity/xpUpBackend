@@ -16,17 +16,5 @@ namespace xpUpBackend.Models
         public News Notice { get; set; }
         [ForeignKey("Events")]
         public Events Event { get; set; }
-
-        public Likes() { }
-
-        public Likes(bool like, Users likedBy, News notice, Events ev)
-        {
-            Like = like;
-            LikedBy = likedBy;
-            Notice = notice;
-            CreatedAt = DateTime.Now;
-            UpdatedAt = DateTime.Now;
-            Event = ev;
-        }
     }
 }

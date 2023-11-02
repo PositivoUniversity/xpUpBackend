@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using xpUpBackend.ContextDb;
+using xpUpBackend.seeder;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,4 +27,10 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var context = services.GetRequiredService<XpUpContext>();
+    CourseSeeder.Initialize(context);
+}
 app.Run();

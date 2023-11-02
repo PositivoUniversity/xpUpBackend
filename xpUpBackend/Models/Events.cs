@@ -18,19 +18,5 @@ namespace xpUpBackend.Models
         public Users PublishedBy { get; set; }
         public List<Likes> Likes { get; } = new List<Likes>();
         public List<CheckIn> CheckIns { get;} = new List<CheckIn>();
-
-        public Events() { }
-        
-        public Events(string title, string subtitle, string description, Users publishedBy, List<Likes> likes,List<CheckIn> checkIns)
-        {
-            Title = title;
-            Subtitle = subtitle;
-            Description = description;
-            PublishedBy = publishedBy;
-            CreatedAt = DateTime.Now;
-            UpdatedAt = DateTime.Now;
-            Likes = likes;
-            CheckIns = checkIns;
-        }
     }
 }

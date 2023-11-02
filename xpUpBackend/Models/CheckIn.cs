@@ -14,16 +14,5 @@ namespace xpUpBackend.Models
         public Users CheckedBy { get; set; }
         [ForeignKey("Events")]
         public Events Event { get; set; }
-
-        public CheckIn() { }
-
-        public CheckIn(bool check, Users checkedBy, Events events)
-        {
-            Check = check;
-            CheckedBy = checkedBy;
-            Event = events;
-            CreatedAt = DateTime.Now;
-            UpdatedAt = DateTime.Now;
-        }
     }
 }
