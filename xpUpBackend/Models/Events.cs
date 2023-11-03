@@ -16,10 +16,8 @@ namespace xpUpBackend.Models
         public string Description { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
-        
-        [ForeignKey("UsersId")]
-        [JsonIgnore]
-        public Users Users { get; set; } = null!;
+
+        [ForeignKey("Users")]
         public int UsersId { get; set; }
         public List<Likes>? Likes { get; } = new List<Likes>();
         public List<CheckIn>? CheckIns { get;} = new List<CheckIn>();

@@ -115,7 +115,6 @@ namespace xpUpBackend.Controllers
                 Description = dto.Description,
                 UsersId = dto.UsersId,
 
-                Users = await _context.Users.FindAsync(dto.UsersId),
                 CreatedAt = DateTime.Now,
                 UpdatedAt = DateTime.Now
             };
