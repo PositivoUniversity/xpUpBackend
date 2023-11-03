@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using xpUpBackend.ContextDb;
+using xpUpBackend.Dto;
 using xpUpBackend.Models;
 
 namespace xpUpBackend.Controllers
@@ -84,15 +85,26 @@ namespace xpUpBackend.Controllers
         // POST: api/Likes
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Likes>> PostLikes(Likes likes)
+        public async Task<ActionResult<Likes>> PostLikes(CreateLikesDto likesDTO)
         {
-          if (_context.Likes == null)
-          {
-              return Problem("Entity set 'XpUpContext.Likes'  is null.");
-          }
+            if (_context.Likes == null)
+            {
+                return Problem("Entity set 'XpUpContext.Likes' is null.");
+            }
+
+            // Mapeia o DTO de Likes para a entidade Likes
+            var likes = new Likes
+            {
+                Like = likesDTO.Like,
+                LikedBy = await _context.Users.FindAsync(likesDTO.LikedByUserId), // Procura o usuário com base no ID especificado
+                Notice = await _context.News.FindAsync(likesDTO.NoticeId), // Procura a notícia com base no ID especificado
+                Event = await _context.Events.FindAsync(likesDTO.EventId), // Procura o evento com base no ID especificado
+            };
+
             _context.Likes.Add(likes);
             await _context.SaveChangesAsync();
 
+            // Retorna um status HTTP 201 Created com o "like" criado
             return CreatedAtAction("GetLikes", new { id = likes.Id }, likes);
         }
 
