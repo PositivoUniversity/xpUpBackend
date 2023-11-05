@@ -6,6 +6,7 @@ namespace xpUpBackend.Models
     public class News
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [Required]
         public string Title { get; set; }
@@ -15,7 +16,8 @@ namespace xpUpBackend.Models
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
         [ForeignKey("Users")]
-        public Users PublishedBy { get; set; }
-        public List<Likes> Likes { get;} = new List<Likes>();
+        public int PublishedBy { get; set; }
+        public List<Likes>? Likes { get; } = new List<Likes>();
+        public List<CheckIn>? CheckIns { get; } = new List<CheckIn>();
     }
 }

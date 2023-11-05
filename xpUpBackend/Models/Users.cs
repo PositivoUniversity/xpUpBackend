@@ -24,7 +24,7 @@ namespace xpUpBackend.Models
         public DateTime UpdatedAt { get; set; }
         public int Role { get; set; }
         public Courses? Course { get; set; }
-        public List<Events> Events { get; set; }
-        public List<News> News { get; set; }
+        public List<Events> ? Events { get; set; }
+        public List<News> ? News { get; set; }
     }
 }

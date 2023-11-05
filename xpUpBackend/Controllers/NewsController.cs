@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using xpUpBackend.ContextDb;
+using xpUpBackend.Dto;
 using xpUpBackend.Models;
 
 namespace xpUpBackend.Controllers
@@ -21,6 +22,32 @@ namespace xpUpBackend.Controllers
             _context = context;
         }
 
+        [HttpPost("Create")]
+        public async Task<ActionResult<News>> PostCreateNews(CreateNewsDto dto)
+        {
+            if (dto == null)
+            {
+                return Problem("Dto is invalid");
+            }
+
+            var newToAdd = new News
+            {
+                Title = dto.Title,
+                Subtitle = dto.Subtitle,
+                Description = dto.Description,
+                PublishedBy = dto.PublishedBy,
+
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now
+            };
+
+            _context.News.Add(newToAdd);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetNews", new { id = newToAdd.Id }, newToAdd);
+        }
+
+        // Default
         // GET: api/News
         [HttpGet]
         public async Task<ActionResult<IEnumerable<News>>> GetNews()
@@ -86,10 +113,10 @@ namespace xpUpBackend.Controllers
         [HttpPost]
         public async Task<ActionResult<News>> PostNews(News news)
         {
-          if (_context.News == null)
-          {
-              return Problem("Entity set 'XpUpContext.News'  is null.");
-          }
+            if (_context.News == null)
+            {
+                return Problem("Entity set 'XpUpContext.News'  is null.");
+            }
             _context.News.Add(news);
             await _context.SaveChangesAsync();
 
