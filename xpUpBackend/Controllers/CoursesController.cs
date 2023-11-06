@@ -84,7 +84,7 @@ namespace xpUpBackend.Controllers
         }
 
         [HttpPost("new")]
-        public async Task<ActionResult<Courses>> PostNewCourses(CreateCoursesDto dto)
+        public async Task<ActionResult<Courses>> PostNewCourses(CreateNewsDto dto)
         {
             if (_context.Courses == null)
             {
@@ -93,7 +93,7 @@ namespace xpUpBackend.Controllers
 
             var courses = new Courses
             {
-                Name = dto.Name,
+                Name = dto.Title,
                 CreatedAt = DateTime.Now,
                 UpdatedAt = DateTime.Now
             };

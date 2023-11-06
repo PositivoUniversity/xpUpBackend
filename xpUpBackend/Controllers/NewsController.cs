@@ -22,7 +22,7 @@ namespace xpUpBackend.Controllers
             _context = context;
         }
 
-        [HttpPost("Create")]
+        [HttpPost("CreateDto")]
         public async Task<ActionResult<News>> PostCreateNews(CreateNewsDto dto)
         {
             if (dto == null)
