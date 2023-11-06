@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Mono.Cecil.Cil;
 using xpUpBackend.ContextDb;
 using xpUpBackend.Dto;
 using xpUpBackend.Models;
@@ -100,6 +102,53 @@ namespace xpUpBackend.Controllers
                 return builder.ToString();
             }
         }
+
+        // PUT: api/Users/editUser/{id}
+        [HttpPut("editUser/{id}")]
+        public async Task<IActionResult> PutDtoUser(int id, EditUsersDto dto)
+        {
+            if (dto == null)
+            {
+                return BadRequest("Dto is null.");
+            }
+
+            var user = await _context.Users.FindAsync(id);
+            if (user == null)
+            {
+                return NotFound("Usuário não encontrado.");
+            }
+            user.Id = dto.Id;
+            user.Name = dto.Name;
+            user.PasswordTip = dto.PasswordTip;
+            user.Password = dto.Password;
+            user.PasswordTipHash = dto.PasswordTipHash;
+   
+            if (!string.IsNullOrEmpty(dto.Password))
+            {
+                user.Password = ComputeHash(dto.Password);
+                user.PasswordHash = ComputeHash(dto.PasswordHash);
+            }
+
+            user.PasswordTip = dto.PasswordTip;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!UsersExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return NoContent();
+        }
+        
 
         [HttpPost("create")]
         public async Task<ActionResult<Users>> PostCreateUsers(CreateUsersDto dto)
