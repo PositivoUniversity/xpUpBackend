@@ -84,7 +84,7 @@ namespace xpUpBackend.Controllers
 
         // POST: api/CheckIns
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        [HttpPost("dtoCheckin")]
         public async Task<ActionResult<CheckIn>> PostCheckIn(CreateCheckinsDto checkInDto)
         {
             if (_context.CheckIn == null)
@@ -92,7 +92,6 @@ namespace xpUpBackend.Controllers
                 return Problem("Entity set 'XpUpContext.CheckIn' is null.");
             }
 
-            // Mapeia o DTO de CheckIn para a entidade CheckIn
             var checkIn = new CheckIn
             {
                 Check = checkInDto.Check,

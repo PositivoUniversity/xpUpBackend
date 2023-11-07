@@ -12,7 +12,9 @@ namespace xpUpBackend.Models
         public DateTime UpdatedAt { get; set; }
         [ForeignKey("Users")]
         public Users CheckedBy { get; set; }
+        public int UserId { get; set; }
         [ForeignKey("Events")]
         public Events Event { get; set; }
+        public int eventId { get; set; }
     }
 }

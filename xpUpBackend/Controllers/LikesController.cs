@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using xpUpBackend.ContextDb;
 using xpUpBackend.Dto;
+using xpUpBackend.Migrations;
 using xpUpBackend.Models;
 
 namespace xpUpBackend.Controllers
@@ -84,28 +85,59 @@ namespace xpUpBackend.Controllers
 
         // POST: api/Likes
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        [HttpPost("dtoLikes")]
         public async Task<ActionResult<Likes>> PostLikes(CreateLikesDto likesDTO)
         {
+            var eventId = await _context.Users.FindAsync(likesDTO.EventId);
+            var newsId = await _context.Users.FindAsync(likesDTO.NoticeId);
             if (_context.Likes == null)
             {
                 return Problem("Entity set 'XpUpContext.Likes' is null.");
             }
-
-            // Mapeia o DTO de Likes para a entidade Likes
-            var likes = new Likes
+            //likes sem notice
+            if(newsId  == null)
             {
-                Like = likesDTO.Like,
-                LikedBy = await _context.Users.FindAsync(likesDTO.LikedByUserId), // Procura o usuário com base no ID especificado
-                Notice = await _context.News.FindAsync(likesDTO.NoticeId), // Procura a notícia com base no ID especificado
-                Event = await _context.Events.FindAsync(likesDTO.EventId), // Procura o evento com base no ID especificado
-            };
+                var likesEvent = new Likes
+                {
+                    Like = likesDTO.Like,
+                    LikedBy = await _context.Users.FindAsync(likesDTO.LikedByUserId),
+                    Event = await _context.Events.FindAsync(likesDTO.EventId),
+                };
 
-            _context.Likes.Add(likes);
-            await _context.SaveChangesAsync();
+                _context.Likes.Add(likesEvent);
+                await _context.SaveChangesAsync();
+                return CreatedAtAction("GetLikes", new { id = likesEvent.Id }, likesEvent);
+            }
 
-            // Retorna um status HTTP 201 Created com o "like" criado
-            return CreatedAtAction("GetLikes", new { id = likes.Id }, likes);
+            //notice sem event
+            if (eventId == null)
+            {
+                var likesNotice = new Likes
+                {
+                    Like = likesDTO.Like,
+                    LikedBy = await _context.Users.FindAsync(likesDTO.LikedByUserId),
+                    Notice = await _context.News.FindAsync(likesDTO.NoticeId)
+                };
+                _context.Likes.Add(likesNotice);
+                await _context.SaveChangesAsync();
+                return CreatedAtAction("GetLikes", new { id = likesNotice.Id }, likesNotice);
+            }
+            //likes com os 2
+            if(eventId != null && newsId != null)
+            {
+                var likesAll = new Likes
+                {
+                    Like = likesDTO.Like,
+                    LikedBy = await _context.Users.FindAsync(likesDTO.LikedByUserId),
+                    Notice = await _context.News.FindAsync(likesDTO.NoticeId),
+                    Event = await _context.Events.FindAsync(likesDTO.EventId)
+                };
+
+                _context.Likes.Add(likesAll);
+                await _context.SaveChangesAsync();
+                return CreatedAtAction("GetLikes", new { id = likesDTO.Id }, likesDTO);
+            }
+            return Problem("Error não capturado");
         }
 
         // DELETE: api/Likes/5
