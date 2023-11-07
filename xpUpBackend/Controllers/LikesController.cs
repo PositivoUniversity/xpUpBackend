@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using xpUpBackend.ContextDb;
 using xpUpBackend.Dto;
-using xpUpBackend.Migrations;
 using xpUpBackend.Models;
 
 namespace xpUpBackend.Controllers
@@ -106,7 +101,7 @@ namespace xpUpBackend.Controllers
 
                 _context.Likes.Add(likesEvent);
                 await _context.SaveChangesAsync();
-                return CreatedAtAction("GetLikes", new { id = likesEvent.Id }, likesEvent);
+                return CreatedAtAction("GetLikes", new { id = likesDTO.Id }, likesDTO);
             }
 
             //notice sem event
@@ -120,7 +115,7 @@ namespace xpUpBackend.Controllers
                 };
                 _context.Likes.Add(likesNotice);
                 await _context.SaveChangesAsync();
-                return CreatedAtAction("GetLikes", new { id = likesNotice.Id }, likesNotice);
+                return CreatedAtAction("GetLikes", new { id = likesDTO.Id }, likesDTO);
             }
             //likes com os 2
             if(eventId != null && newsId != null)
@@ -137,7 +132,7 @@ namespace xpUpBackend.Controllers
                 await _context.SaveChangesAsync();
                 return CreatedAtAction("GetLikes", new { id = likesDTO.Id }, likesDTO);
             }
-            return Problem("Error não capturado");
+            return Problem("Erro eventos dtoLikes");
         }
 
         // DELETE: api/Likes/5

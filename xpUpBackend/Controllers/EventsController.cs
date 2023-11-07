@@ -97,17 +97,13 @@ namespace xpUpBackend.Controllers
             return CreatedAtAction("GetEvents", new { id = events.Id }, events);
         }
 
-        // DTO Post para Events
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost("EventsTest")]
+        [HttpPost("dtoEvents")]
         public async Task<ActionResult> PostCreateEvents(CreateEventsDto dto)
         {
             if (dto == null)
             {
                 return BadRequest("O DTO de criação de eventos é inválido.");
             }
-
-            // Mapeie o DTO para um objeto Events (se necessário)
             var eventToAdd = new Events
             {
                 Title = dto.Title,

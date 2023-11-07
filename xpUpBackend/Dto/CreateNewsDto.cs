@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using xpUpBackend.Models;
-
+﻿
 namespace xpUpBackend.Dto
 {
     public class CreateNewsDto

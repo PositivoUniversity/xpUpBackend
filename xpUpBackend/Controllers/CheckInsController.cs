@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using xpUpBackend.ContextDb;
 using xpUpBackend.Dto;
@@ -104,7 +99,7 @@ namespace xpUpBackend.Controllers
             _context.CheckIn.Add(checkIn);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCheckIn", new { id = checkIn.Id }, checkIn);
+            return CreatedAtAction("GetCheckIn", new { id = checkInDto.Id }, checkInDto);
         }
 
         // DELETE: api/CheckIns/5

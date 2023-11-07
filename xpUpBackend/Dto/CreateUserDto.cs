@@ -1,6 +1,4 @@
-﻿using System.Security.Cryptography;
-
-namespace xpUpBackend.Dto
+﻿namespace xpUpBackend.Dto
 {
     public class CreateUsersDto
     {
