@@ -12,19 +12,12 @@ namespace xpUpBackend.Models
         [Required]
         [EmailAddress(ErrorMessage = "Informe um email válido.")]
         public string Email { get; set; }
-        [Required]
-        [NotMapped]
         public string Password { get; set; }
-        [Required]
-        [NotMapped]
         public string PasswordTip { get; set; }
-        public string PasswordHash { get; set; }
-        public string PasswordTipHash { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
         public int Role { get; set; }
         public Courses? Course { get; set; }
-
         [NotMapped]
         public List<Events>? Events { get; set; }
         [NotMapped]

@@ -12,6 +12,6 @@ namespace xpUpBackend.Models
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
         [NotMapped]
-        public List<Users>? Enrolleds { get; set; }
+        public List<Users> Enrolleds { get; set; }
     }
 }

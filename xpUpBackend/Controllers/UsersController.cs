@@ -121,12 +121,11 @@ namespace xpUpBackend.Controllers
             user.Name = dto.Name;
             user.PasswordTip = dto.PasswordTip;
             user.Password = dto.Password;
-            user.PasswordTipHash = dto.PasswordTipHash;
    
             if (!string.IsNullOrEmpty(dto.Password))
             {
                 user.Password = ComputeHash(dto.Password);
-                user.PasswordHash = ComputeHash(dto.PasswordHash);
+                user.PasswordTip = ComputeHash(dto.PasswordTip);
             }
 
             user.PasswordTip = dto.PasswordTip;
@@ -177,8 +176,8 @@ namespace xpUpBackend.Controllers
                     Course = course
                 };
 
-                users.PasswordHash = ComputeHash(dto.Password);
-                users.PasswordTipHash = ComputeHash(dto.PasswordTip);
+                users.Password = ComputeHash(dto.Password);
+                users.PasswordTip = ComputeHash(dto.PasswordTip);
 
                 _context.Users.Add(users);
                 await _context.SaveChangesAsync();

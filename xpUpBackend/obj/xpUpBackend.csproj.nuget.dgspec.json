@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Dayanne\\Downloads\\trabalhoFacul\\xpUpBackend\\xpUpBackend\\xpUpBackend.csproj": {}
+    "C:\\Users\\2569792\\OneDrive - TCS COM PROD\\Documents\\Projeto Integrado Facul\\xpUpBackend\\xpUpBackend\\xpUpBackend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Dayanne\\Downloads\\trabalhoFacul\\xpUpBackend\\xpUpBackend\\xpUpBackend.csproj": {
+    "C:\\Users\\2569792\\OneDrive - TCS COM PROD\\Documents\\Projeto Integrado Facul\\xpUpBackend\\xpUpBackend\\xpUpBackend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dayanne\\Downloads\\trabalhoFacul\\xpUpBackend\\xpUpBackend\\xpUpBackend.csproj",
+        "projectUniqueName": "C:\\Users\\2569792\\OneDrive - TCS COM PROD\\Documents\\Projeto Integrado Facul\\xpUpBackend\\xpUpBackend\\xpUpBackend.csproj",
         "projectName": "xpUpBackend",
-        "projectPath": "C:\\Users\\Dayanne\\Downloads\\trabalhoFacul\\xpUpBackend\\xpUpBackend\\xpUpBackend.csproj",
-        "packagesPath": "C:\\Users\\Dayanne\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dayanne\\Downloads\\trabalhoFacul\\xpUpBackend\\xpUpBackend\\obj\\",
+        "projectPath": "C:\\Users\\2569792\\OneDrive - TCS COM PROD\\Documents\\Projeto Integrado Facul\\xpUpBackend\\xpUpBackend\\xpUpBackend.csproj",
+        "packagesPath": "C:\\Users\\2569792\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\2569792\\OneDrive - TCS COM PROD\\Documents\\Projeto Integrado Facul\\xpUpBackend\\xpUpBackend\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Dayanne\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\2569792\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -109,7 +109,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }
