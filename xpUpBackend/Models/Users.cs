@@ -24,7 +24,10 @@ namespace xpUpBackend.Models
         public DateTime UpdatedAt { get; set; }
         public int Role { get; set; }
         public Courses? Course { get; set; }
+
+        [NotMapped]
         public List<Events>? Events { get; set; }
+        [NotMapped]
         public List<News>? News { get; set; }
     }
 }

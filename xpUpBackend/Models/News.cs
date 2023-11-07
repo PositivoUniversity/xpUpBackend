@@ -13,11 +13,12 @@ namespace xpUpBackend.Models
         [Required]
         public string Subtitle { get; set; }
         public string Description { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public DateTime UpdatedAt { get; set; }
+
         [ForeignKey("Users")]
         public int PublishedBy { get; set; }
         public List<Likes>? Likes { get; } = new List<Likes>();
         public List<CheckIn>? CheckIns { get; } = new List<CheckIn>();
+        public DateTime CreatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
     }
 }
