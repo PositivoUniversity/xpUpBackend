@@ -149,7 +149,7 @@ namespace xpUpBackend.Controllers
         }
 
 
-        [HttpPost("create")]
+        [HttpPost("createUserDto")]
         public async Task<ActionResult<Users>> PostCreateUsers(CreateUsersDto dto)
         {
             if (_context.Users == null)

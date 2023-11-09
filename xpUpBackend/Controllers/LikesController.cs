@@ -80,7 +80,7 @@ namespace xpUpBackend.Controllers
 
         // POST: api/Likes
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost("dtoLikes")]
+        [HttpPost("createLikesDto")]
         public async Task<ActionResult<Likes>> PostLikes(CreateLikesDto likesDTO)
         {
             var eventId = await _context.Users.FindAsync(likesDTO.EventId);

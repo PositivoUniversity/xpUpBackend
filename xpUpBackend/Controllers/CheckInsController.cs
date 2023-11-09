@@ -79,7 +79,7 @@ namespace xpUpBackend.Controllers
 
         // POST: api/CheckIns
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost("dtoCheckin")]
+        [HttpPost("createCheckinDto")]
         public async Task<ActionResult<CheckIn>> PostCheckIn(CreateCheckinsDto checkInDto)
         {
             if (_context.CheckIn == null)
