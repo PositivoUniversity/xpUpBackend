@@ -83,8 +83,8 @@ namespace xpUpBackend.Controllers
             return NoContent();
         }
 
-        [HttpPost("new")]
-        public async Task<ActionResult<Courses>> PostNewCourses(CreateNewsDto dto)
+        [HttpPost("CreateCourseDto")]
+        public async Task<ActionResult<Courses>> PostNewCourses(CreateCoursesDto dto)
         {
             if (_context.Courses == null)
             {
@@ -93,14 +93,12 @@ namespace xpUpBackend.Controllers
 
             var courses = new Courses
             {
-                Name = dto.Title,
-                CreatedAt = DateTime.Now,
-                UpdatedAt = DateTime.Now
+                Name = dto.Name,
             };
 
             _context.Courses.Add(courses);
             await _context.SaveChangesAsync();
-            return CreatedAtAction("GetCourses", new { id = courses.Id }, courses);
+            return CreatedAtAction("GetCourses", new { id = dto.Id }, courses);
         }
 
         // POST: api/Courses

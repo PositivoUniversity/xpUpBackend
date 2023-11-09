@@ -97,7 +97,7 @@ namespace xpUpBackend.Controllers
             return CreatedAtAction("GetEvents", new { id = events.Id }, events);
         }
 
-        [HttpPost("dtoEvents")]
+        [HttpPost("createEventsDto")]
         public async Task<ActionResult> PostCreateEvents(CreateEventsDto dto)
         {
             if (dto == null)
