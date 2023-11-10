@@ -170,8 +170,8 @@ namespace xpUpBackend.Controllers
                     Email = dto.Email,
                     Password = dto.Password,
                     PasswordTip = dto.PasswordTip,
-                    CreatedAt = DateTime.Now,
-                    UpdatedAt = DateTime.Now,
+                    CreatedAt = dto.CreatedAt,
+                    UpdatedAt = dto.UpdatedAt,
                     Role = dto.Role,
                     Course = course
                 };
