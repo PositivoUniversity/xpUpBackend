@@ -37,8 +37,8 @@ namespace xpUpBackend.Controllers
                 Description = dto.Description,
                 PublishedBy = dto.PublishedBy,
 
-                CreatedAt = DateTime.Now,
-                UpdatedAt = DateTime.Now
+                CreatedAt = dto.CreatedAt,
+                UpdatedAt = dto.UpdatedAt
             };
 
             _context.News.Add(newToAdd);
