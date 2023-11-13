@@ -25,9 +25,15 @@ namespace xpUpBackend.Controllers
         {
             _context = context;
         }
-
+        [HttpGet("roles")]
+        public IActionResult GetRoles()
+        {
+            var roles = Enum.GetValues(typeof(UsersRoles)).Cast<UsersRoles>().Select(x => new { Id = (int)x, Name = x.ToString() });
+            return Ok(roles);
+        }
         // GET: api/Users
         [HttpGet]
+
         public async Task<ActionResult<IEnumerable<Users>>> GetUsers()
         {
           if (_context.Users == null)
