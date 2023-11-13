@@ -111,8 +111,8 @@ namespace xpUpBackend.Controllers
                 Description = dto.Description,
                 UsersId = dto.UsersId,
 
-                CreatedAt = DateTime.Now,
-                UpdatedAt = DateTime.Now
+                CreatedAt = dto.CreatedAt,
+                UpdatedAt = dto.UpdatedAt
             };
 
             _context.Events.Add(eventToAdd);
