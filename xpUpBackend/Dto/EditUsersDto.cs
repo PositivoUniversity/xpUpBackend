@@ -10,6 +10,6 @@ namespace xpUpBackend.Dto
         public string? Password { get; set; }
         public string? PasswordTip { get; set; }
         public int? Role { get; set; }
-        public int Course { get; set; }
+        public int? Course { get; set; }
     }
 }

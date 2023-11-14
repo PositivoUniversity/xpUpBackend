@@ -127,7 +127,9 @@ namespace xpUpBackend.Controllers
             user.Name = dto.Name;
             user.PasswordTip = dto.PasswordTip;
             user.Password = dto.Password;
-   
+            user.CourseId = dto.Course;         
+           
+
             if (!string.IsNullOrEmpty(dto.Password))
             {
                 user.Password = ComputeHash(dto.Password);

@@ -17,6 +17,8 @@ namespace xpUpBackend.Models
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
         public int Role { get; set; }
+
+        public int? CourseId {  get; set; }
         public Courses? Course { get; set; }
         [NotMapped]
         public List<Events>? Events { get; set; }
