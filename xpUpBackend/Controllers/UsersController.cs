@@ -136,8 +136,6 @@ namespace xpUpBackend.Controllers
           
             }
 
-            user.PasswordTip = dto.PasswordTip;
-
             try
             {
                 await _context.SaveChangesAsync();
@@ -185,8 +183,7 @@ namespace xpUpBackend.Controllers
                 };
 
                 users.Password = ComputeHash(dto.Password);
-                users.PasswordTip = ComputeHash(dto.PasswordTip);
-
+             
                 _context.Users.Add(users);
                 await _context.SaveChangesAsync();
                 return CreatedAtAction("GetUsers", new { id = users.Id }, users);
