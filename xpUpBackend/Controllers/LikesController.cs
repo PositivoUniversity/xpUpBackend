@@ -83,52 +83,36 @@ namespace xpUpBackend.Controllers
         [HttpPost("createLikesDto")]
         public async Task<ActionResult<Likes>> PostLikes(CreateLikesDto likesDTO)
         {
-            var eventId = await _context.Users.FindAsync(likesDTO.EventId);
-            var newsId = await _context.Users.FindAsync(likesDTO.NoticeId);
+            var eventId = await _context.Events.FindAsync(likesDTO.EventId);
+            var newsId = await _context.News.FindAsync(likesDTO.NoticeId);
+            var userId = await _context.Users.FindAsync(likesDTO.LikedByUserId);
             if (_context.Likes == null)
             {
                 return Problem("Entity set 'XpUpContext.Likes' is null.");
             }
-            //likes sem notice
-            if(newsId  == null)
+            if(eventId  != null)
             {
                 var likesEvent = new Likes
                 {
                     Like = likesDTO.Like,
-                    LikedBy = await _context.Users.FindAsync(likesDTO.LikedByUserId),
-                    Event = await _context.Events.FindAsync(likesDTO.EventId),
+                    LikedBy = userId,
+                    Event = eventId,
                 };
 
                 _context.Likes.Add(likesEvent);
                 await _context.SaveChangesAsync();
                 return CreatedAtAction("GetLikes", new { id = likesDTO.Id }, likesDTO);
             }
-
-            //notice sem event
-            if (eventId == null)
+                
+            if (newsId != null)
             {
                 var likesNotice = new Likes
                 {
                     Like = likesDTO.Like,
-                    LikedBy = await _context.Users.FindAsync(likesDTO.LikedByUserId),
-                    Notice = await _context.News.FindAsync(likesDTO.NoticeId)
+                    LikedBy = userId,
+                    Notice = newsId
                 };
                 _context.Likes.Add(likesNotice);
-                await _context.SaveChangesAsync();
-                return CreatedAtAction("GetLikes", new { id = likesDTO.Id }, likesDTO);
-            }
-            //likes com os 2
-            if(eventId != null && newsId != null)
-            {
-                var likesAll = new Likes
-                {
-                    Like = likesDTO.Like,
-                    LikedBy = await _context.Users.FindAsync(likesDTO.LikedByUserId),
-                    Notice = await _context.News.FindAsync(likesDTO.NoticeId),
-                    Event = await _context.Events.FindAsync(likesDTO.EventId)
-                };
-
-                _context.Likes.Add(likesAll);
                 await _context.SaveChangesAsync();
                 return CreatedAtAction("GetLikes", new { id = likesDTO.Id }, likesDTO);
             }
