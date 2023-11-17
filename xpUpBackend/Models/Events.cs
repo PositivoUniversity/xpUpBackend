@@ -16,6 +16,7 @@ namespace xpUpBackend.Models
 
         [ForeignKey("Users")]
         public int UsersId { get; set; }
+        public  string UserPost { get; set; }
         public List<Likes>? Likes { get; } = new List<Likes>();
         public List<CheckIn>? CheckIns { get;} = new List<CheckIn>();
         public DateTime CreatedAt { get; set; }

@@ -110,7 +110,7 @@ namespace xpUpBackend.Controllers
                 Subtitle = dto.Subtitle,
                 Description = dto.Description,
                 UsersId = dto.UsersId,
-
+                UserPost = dto.userPost,
                 CreatedAt = dto.CreatedAt,
                 UpdatedAt = dto.UpdatedAt
             };

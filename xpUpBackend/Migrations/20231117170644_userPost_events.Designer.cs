@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using xpUpBackend.ContextDb;
@@ -11,9 +12,11 @@ using xpUpBackend.ContextDb;
 namespace xpUpBackend.Migrations
 {
     [DbContext(typeof(XpUpContext))]
-    partial class XpUpContextModelSnapshot : ModelSnapshot
+    [Migration("20231117170644_userPost_events")]
+    partial class userPost_events
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
