@@ -78,6 +78,50 @@ namespace xpUpBackend.Controllers
             return NoContent();
         }
 
+        // PUT: api/Likes/5
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPut("/api/EditLikesDto/{id}")]
+        public async Task<IActionResult> EditLikesDto(int id, EditLikesDto likes)
+        {
+            if (id != likes.Id)
+            {
+                return BadRequest();
+            }
+
+            var idEdit = await _context.Likes.FindAsync(id);
+            if(idEdit == null)
+            {
+                return NotFound("Id de Like não encontrado: " + id);
+
+            }
+
+            idEdit.Id = likes.Id;
+            idEdit.Like = likes.Like;
+
+
+
+            
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!LikesExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
+
         // POST: api/Likes
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost("createLikesDto")]
