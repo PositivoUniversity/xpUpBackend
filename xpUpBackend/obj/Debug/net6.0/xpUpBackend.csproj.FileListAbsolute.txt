@@ -960,3 +960,6 @@ D:\Projetos\xpUpBackend\xpUpBackend\obj\Debug\net6.0\refint\xpUpBackend.dll
 D:\Projetos\xpUpBackend\xpUpBackend\obj\Debug\net6.0\xpUpBackend.pdb
 D:\Projetos\xpUpBackend\xpUpBackend\obj\Debug\net6.0\xpUpBackend.genruntimeconfig.cache
 D:\Projetos\xpUpBackend\xpUpBackend\obj\Debug\net6.0\ref\xpUpBackend.dll
+C:\Users\2569792\OneDrive - TCS COM PROD\Documents\Projeto Integrado Facul\xpUpBackend\xpUpBackend\bin\Debug\net6.0\AutoMapper.dll
+C:\Users\2569792\OneDrive - TCS COM PROD\Documents\Projeto Integrado Facul\xpUpBackend\xpUpBackend\bin\Debug\net6.0\Npgsql.dll
+C:\Users\2569792\OneDrive - TCS COM PROD\Documents\Projeto Integrado Facul\xpUpBackend\xpUpBackend\bin\Debug\net6.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll

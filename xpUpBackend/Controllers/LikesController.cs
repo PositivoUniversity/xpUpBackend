@@ -1,6 +1,8 @@
 ﻿
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 using xpUpBackend.ContextDb;
 using xpUpBackend.Dto;
 using xpUpBackend.Models;
@@ -22,29 +24,66 @@ namespace xpUpBackend.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Likes>>> GetLikes()
         {
-          if (_context.Likes == null)
-          {
-              return NotFound();
-          }
-            return await _context.Likes.ToListAsync();
+            if (_context.Likes == null)
+            {
+                return NotFound();
+            }
+
+            var likes = await _context.Likes
+                .Include(l => l.LikedBy)
+                .Include(l => l.Notice)
+                .Include(l => l.Event)
+                .ToListAsync();
+
+            var jsonOptions = new JsonSerializerOptions
+            {
+                ReferenceHandler = ReferenceHandler.Preserve
+            };
+
+            var jsonResult = JsonSerializer.Serialize(likes, jsonOptions);
+
+            return new ContentResult
+            {
+                Content = jsonResult,
+                ContentType = "application/json",
+                StatusCode = 200
+            };
         }
 
         // GET: api/Likes/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Likes>> GetLikes(int id)
         {
-          if (_context.Likes == null)
-          {
-              return NotFound();
-          }
-            var likes = await _context.Likes.FindAsync(id);
+            if (_context.Likes == null)
+            {
+                return NotFound();
+            }
+
+            var likes = await _context.Likes
+                .Where(l => l.Id == id)
+                .Include(l => l.LikedBy)
+                .Include(l => l.Notice)
+                .Include(l => l.Event)
+                .FirstOrDefaultAsync();
 
             if (likes == null)
             {
                 return NotFound();
             }
 
-            return likes;
+            var jsonOptions = new JsonSerializerOptions
+            {
+                ReferenceHandler = ReferenceHandler.Preserve
+            };
+
+            var jsonResult = JsonSerializer.Serialize(likes, jsonOptions);
+
+            return new ContentResult
+            {
+                Content = jsonResult,
+                ContentType = "application/json",
+                StatusCode = 200
+            };
         }
 
         // PUT: api/Likes/5
