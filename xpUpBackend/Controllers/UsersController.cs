@@ -125,6 +125,7 @@ namespace xpUpBackend.Controllers
             }
             user.Id = dto.Id;
             user.Name = dto.Name;
+            user.Email = dto.Email;
             user.PasswordTip = dto.PasswordTip;
             user.Password = dto.Password;
             user.CourseId = dto.Course;
